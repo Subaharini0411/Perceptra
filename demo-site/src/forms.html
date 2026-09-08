@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Form - ISRO Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav id="main-nav">
+    <a class="nav-brand" href="index.html">🚀 <span>ISRO</span> Demo</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="missions.html">Missions</a></li>
+      <li><a href="chandrayaan.html">Chandrayaan</a></li>
+      <li><a href="forms.html" class="active">Forms</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="shopping.html">Shopping</a></li>
+      <li><a href="news.html">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div style="padding: 2rem 0; max-width:700px;">
+      <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.5rem;">Contact ISRO</h1>
+      <p style="color:var(--text-secondary); margin-bottom:2rem;">Fill out this form to get in touch with ISRO outreach team.</p>
+
+      <div id="success-message" class="alert alert-success" style="display:none;">
+        ✅ Form submitted successfully! We will get back to you within 3-5 business days.
+      </div>
+      <div id="error-message" class="alert alert-error" style="display:none;"></div>
+
+      <div class="card">
+        <form id="contact-form" onsubmit="submitForm(event)">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="name-input">Full Name *</label>
+              <input type="text" id="name-input" name="name" class="form-control" placeholder="Enter your full name" required aria-label="Full Name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email-input">Email Address *</label>
+              <input type="email" id="email-input" name="email" class="form-control" placeholder="your@email.com" required aria-label="Email Address" />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="phone-input">Phone Number</label>
+              <input type="tel" id="phone-input" name="phone" class="form-control" placeholder="+91 98765 43210" aria-label="Phone Number" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="country-select">Country *</label>
+              <select id="country-select" name="country" class="form-control" required aria-label="Country">
+                <option value="">Select your country</option>
+                <option value="india">India</option>
+                <option value="usa">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="russia">Russia</option>
+                <option value="france">France</option>
+                <option value="japan">Japan</option>
+                <option value="germany">Germany</option>
+                <option value="china">China</option>
+                <option value="canada">Canada</option>
+                <option value="australia">Australia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject-input">Subject *</label>
+            <input type="text" id="subject-input" name="subject" class="form-control" placeholder="Inquiry about ISRO missions" required aria-label="Subject" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message-textarea">Message *</label>
+            <textarea id="message-textarea" name="message" class="form-control" rows="5" placeholder="Write your message here..." required aria-label="Message"></textarea>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <p style="font-size:0.875rem; font-weight:500; color:var(--text-secondary); margin-bottom:0.75rem;">Areas of Interest:</p>
+            <div class="checkbox-group">
+              <input type="checkbox" id="interest-missions" name="interest" value="missions" aria-label="Space Missions" />
+              <label for="interest-missions">Space Missions</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="interest-education" name="interest" value="education" aria-label="Education Programs" />
+              <label for="interest-education">Education Programs</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="interest-research" name="interest" value="research" aria-label="Research Collaboration" />
+              <label for="interest-research">Research Collaboration</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="interest-technology" name="interest" value="technology" aria-label="Technology Transfer" />
+              <label for="interest-technology">Technology Transfer</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <p style="font-size:0.875rem; font-weight:500; color:var(--text-secondary); margin-bottom:0.75rem;">Contact Preference:</p>
+            <div class="checkbox-group">
+              <input type="radio" id="pref-email" name="pref" value="email" aria-label="Email preference" />
+              <label for="pref-email">Email</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="radio" id="pref-phone" name="pref" value="phone" aria-label="Phone preference" />
+              <label for="pref-phone">Phone</label>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:1rem;">
+            <button type="submit" class="btn btn-primary" id="submit-btn">📤 Submit Form</button>
+            <button type="reset" class="btn btn-secondary" id="reset-btn" onclick="resetForm()">🔄 Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>PERCEPTA Demo Site — ISRO-themed content for testing purposes only.</p>
+  </footer>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = '⏳ Submitting...';
+      btn.disabled = true;
+
+      // Simulate submission
+      setTimeout(() => {
+        document.getElementById('success-message').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+        document.getElementById('contact-form').reset();
+        btn.textContent = '📤 Submit Form';
+        btn.disabled = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1200);
+    }
+
+    function resetForm() {
+      document.getElementById('success-message').style.display = 'none';
+      document.getElementById('error-message').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

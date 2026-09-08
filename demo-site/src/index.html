@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISRO Demo - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav id="main-nav">
+    <a class="nav-brand" href="index.html">🚀 <span>ISRO</span> Demo</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="missions.html">Missions</a></li>
+      <li><a href="chandrayaan.html">Chandrayaan</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="shopping.html">Shopping</a></li>
+      <li><a href="news.html">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Indian Space Research Organisation</h1>
+    <p>Space Science for the benefit of humankind. Exploring the cosmos with indigenous technology.</p>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search ISRO missions, launches, satellites..."
+        aria-label="Search missions"
+      />
+      <button class="btn btn-primary" id="search-button" onclick="doSearch()">🔍 Search</button>
+    </div>
+
+    <!-- Country Dropdown -->
+    <div style="margin-bottom: 1rem;">
+      <select id="country-select" class="form-control" style="max-width: 200px; margin: 0 auto;" aria-label="Country">
+        <option value="">Select Country</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="russia">Russia</option>
+        <option value="france">France</option>
+        <option value="japan">Japan</option>
+        <option value="germany">Germany</option>
+        <option value="uk">United Kingdom</option>
+        <option value="china">China</option>
+      </select>
+    </div>
+
+    <div id="search-results" class="results-container" style="display:none; text-align:left; max-width:700px; margin:0 auto;"></div>
+  </div>
+
+  <div class="container">
+    <!-- Mission Cards -->
+    <div class="section">
+      <h2 class="section-title">🛸 Featured Missions</h2>
+      <div class="grid-4">
+        <div class="card mission-card" id="chandrayaan-card" onclick="location.href='chandrayaan.html'" data-testid="chandrayaan-card">
+          <div class="mission-icon">🌙</div>
+          <h3>Chandrayaan-3</h3>
+          <p>India's third lunar exploration mission. Successfully landed near the south pole of the Moon.</p>
+          <span class="badge badge-success">SUCCESS</span>
+          <div style="margin-top:1rem;">
+            <a class="btn btn-secondary" href="chandrayaan.html" style="padding:0.5rem 1rem; font-size:0.8rem;">Learn More</a>
+          </div>
+        </div>
+
+        <div class="card mission-card" id="mars-card" onclick="location.href='missions.html#mars'" data-testid="mars-card">
+          <div class="mission-icon">🔴</div>
+          <h3>Mars Orbiter Mission</h3>
+          <p>Mangalyaan — India's first interplanetary mission. Entered Martian orbit on first attempt.</p>
+          <span class="badge badge-success">SUCCESS</span>
+          <div style="margin-top:1rem;">
+            <a class="btn btn-secondary" href="missions.html#mars" style="padding:0.5rem 1rem; font-size:0.8rem;">Learn More</a>
+          </div>
+        </div>
+
+        <div class="card mission-card" id="aditya-card" onclick="location.href='missions.html#aditya'" data-testid="aditya-card">
+          <div class="mission-icon">☀️</div>
+          <h3>Aditya-L1</h3>
+          <p>India's first solar observation mission. Studying the Sun from Lagrange point L1.</p>
+          <span class="badge badge-success">ACTIVE</span>
+          <div style="margin-top:1rem;">
+            <a class="btn btn-secondary" href="missions.html#aditya" style="padding:0.5rem 1rem; font-size:0.8rem;">Learn More</a>
+          </div>
+        </div>
+
+        <div class="card mission-card" id="mangalyaan-card" onclick="location.href='missions.html'" data-testid="mangalyaan-card">
+          <div class="mission-icon">🌌</div>
+          <h3>Mangalyaan-2</h3>
+          <p>India's second Mars mission. Enhanced scientific payload for deeper exploration.</p>
+          <span class="badge badge-warning">PLANNED</span>
+          <div style="margin-top:1rem;">
+            <a class="btn btn-secondary" href="missions.html" style="padding:0.5rem 1rem; font-size:0.8rem;">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="section">
+      <h2 class="section-title">📊 ISRO Achievements</h2>
+      <div class="grid-4">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem; font-weight:800; color:var(--accent-blue);">100+</div>
+          <div style="color:var(--text-secondary); font-size:0.875rem;">Satellites Launched</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem; font-weight:800; color:var(--accent-green);">₹600Cr</div>
+          <div style="color:var(--text-secondary); font-size:0.875rem;">Chandrayaan-3 Cost</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem; font-weight:800; color:var(--accent-purple);">1st</div>
+          <div style="color:var(--text-secondary); font-size:0.875rem;">Moon South Pole Landing</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem; font-weight:800; color:var(--accent-yellow);">54</div>
+          <div style="color:var(--text-secondary); font-size:0.875rem;">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learn More section (for scroll + click demo) -->
+    <div class="section" style="padding: 3rem 0;">
+      <div class="card" style="text-align:center;">
+        <h2 style="margin-bottom:1rem;">About ISRO</h2>
+        <p style="color:var(--text-secondary); margin-bottom:1.5rem; max-width:600px; margin-left:auto; margin-right:auto;">
+          The Indian Space Research Organisation (ISRO) is the space agency of India. It is headquartered in Bengaluru and has been responsible for building and launching satellites, launch vehicles, and developing space technology.
+        </p>
+        <button class="btn btn-primary" id="learn-more" onclick="showAboutModal()">Learn More About ISRO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="about-modal">
+    <div class="modal">
+      <h2>🚀 About ISRO</h2>
+      <p style="color:var(--text-secondary); margin-top:1rem;">
+        Founded in 1969, ISRO has grown to become one of the world's leading space agencies.
+        With missions to the Moon, Mars, and the Sun, ISRO continues to push the boundaries
+        of space exploration with cost-effective, indigenous technology.
+      </p>
+      <div class="modal-actions">
+        <a href="missions.html" class="btn btn-primary">View All Missions</a>
+        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>PERCEPTA Demo Site — ISRO-themed content for testing purposes only.</p>
+    <p style="margin-top:0.5rem;">SIH 2026 | Problem SIH26171 | On-device Visual Perception for Browser Agents</p>
+  </footer>
+
+  <script>
+    function doSearch() {
+      const query = document.getElementById('search-input').value.trim();
+      const resultsDiv = document.getElementById('search-results');
+      if (!query) return;
+
+      const MISSIONS = [
+        { title: 'Chandrayaan-3', desc: 'India\'s third lunar mission. Successfully landed near Moon\'s south pole in August 2023.', badge: 'SUCCESS' },
+        { title: 'Mars Orbiter Mission (Mangalyaan)', desc: 'India\'s first interplanetary mission. Entered Martian orbit on first attempt in 2014.', badge: 'SUCCESS' },
+        { title: 'Aditya-L1', desc: 'India\'s first dedicated solar observation spacecraft studying the Sun from L1.', badge: 'ACTIVE' },
+        { title: 'GSAT-20', desc: 'High throughput communication satellite providing broadband connectivity across India.', badge: 'ACTIVE' },
+        { title: 'Chandrayaan-1', desc: 'India\'s first lunar probe. Discovered water molecules on the lunar surface.', badge: 'COMPLETED' },
+        { title: 'PSLV-C56', desc: 'Polar Satellite Launch Vehicle mission deploying multiple international satellites.', badge: 'SUCCESS' },
+      ];
+
+      const lq = query.toLowerCase();
+      const matches = MISSIONS.filter(m =>
+        m.title.toLowerCase().includes(lq) || m.desc.toLowerCase().includes(lq)
+      );
+
+      const allResults = matches.length > 0 ? matches : MISSIONS;
+
+      resultsDiv.innerHTML = `
+        <h3 style="margin-bottom:1rem; font-size:0.875rem; color:var(--text-secondary);">Search results for "${query}" — ${allResults.length} results found</h3>
+        ${allResults.map(r => `
+          <div class="result-item">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <h3>${r.title}</h3>
+              <span class="badge badge-${r.badge === 'ACTIVE' ? 'success' : r.badge === 'SUCCESS' ? 'info' : 'warning'}">${r.badge}</span>
+            </div>
+            <p>${r.desc}</p>
+          </div>
+        `).join('')}
+      `;
+      resultsDiv.style.display = 'block';
+    }
+
+    document.getElementById('search-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    function showAboutModal() {
+      document.getElementById('about-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('about-modal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

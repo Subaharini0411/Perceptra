@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISRO Demo - Search</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav id="main-nav">
+    <a class="nav-brand" href="index.html">🚀 <span>ISRO</span> Demo</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="search.html" class="active">Search</a></li>
+      <li><a href="missions.html">Missions</a></li>
+      <li><a href="chandrayaan.html">Chandrayaan</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="shopping.html">Shopping</a></li>
+      <li><a href="news.html">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div style="padding: 2rem 0;">
+      <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.5rem;">Search ISRO Missions</h1>
+      <p style="color:var(--text-secondary); margin-bottom:2rem;">Find information about ISRO missions, satellites, and launches</p>
+
+      <div class="search-bar" style="max-width:100%;">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Type to search missions..."
+          aria-label="Search missions"
+          value=""
+        />
+        <button class="btn btn-primary" id="search-button" onclick="doSearch()">🔍 Search</button>
+      </div>
+
+      <div id="search-results" class="results-container">
+        <h3 style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:1rem;">Popular Missions</h3>
+        <div id="results-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>PERCEPTA Demo Site — ISRO-themed content for testing</p>
+  </footer>
+
+  <script>
+    const ALL_MISSIONS = [
+      { title: 'Chandrayaan-3', desc: 'Lunar landing mission near Moon\'s south pole. Vikram lander and Pragyan rover.', year: 2023, status: 'SUCCESS', type: 'Lunar' },
+      { title: 'Chandrayaan-2', desc: 'Second lunar mission with orbiter, lander and rover. Orbiter continues to function.', year: 2019, status: 'PARTIAL', type: 'Lunar' },
+      { title: 'Chandrayaan-1', desc: 'India\'s first lunar probe. Discovered water ice on Moon.', year: 2008, status: 'COMPLETED', type: 'Lunar' },
+      { title: 'Mars Orbiter Mission (Mangalyaan)', desc: 'India\'s first interplanetary mission. Entered Mars orbit on first attempt.', year: 2013, status: 'SUCCESS', type: 'Planetary' },
+      { title: 'Aditya-L1', desc: 'First dedicated solar observatory mission positioned at L1 Lagrange point.', year: 2023, status: 'ACTIVE', type: 'Solar' },
+      { title: 'GSAT-11', desc: 'High throughput communication satellite providing 16 Gbps data link.', year: 2018, status: 'ACTIVE', type: 'Communication' },
+      { title: 'PSLV-C56', desc: 'Polar Satellite Launch Vehicle mission deploying DS-SAR and co-passengers.', year: 2023, status: 'SUCCESS', type: 'Launch' },
+      { title: 'NavIC', desc: 'India\'s indigenous navigation system providing regional coverage.', year: 2016, status: 'ACTIVE', type: 'Navigation' },
+    ];
+
+    function renderMissions(missions) {
+      const list = document.getElementById('results-list');
+      list.innerHTML = missions.map(m => `
+        <div class="result-item">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+            <h3 style="font-size:1rem;">${m.title}</h3>
+            <div style="display:flex; gap:0.5rem; flex-shrink:0; margin-left:1rem;">
+              <span class="badge badge-info">${m.type}</span>
+              <span class="badge badge-${m.status === 'ACTIVE' || m.status === 'SUCCESS' ? 'success' : 'warning'}">${m.status}</span>
+            </div>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.875rem;">${m.desc}</p>
+          <p style="color:var(--text-muted); font-size:0.75rem; margin-top:0.5rem;">Year: ${m.year}</p>
+        </div>
+      `).join('');
+    }
+
+    function doSearch() {
+      const query = document.getElementById('search-input').value.trim();
+      const header = document.querySelector('#search-results h3');
+
+      if (!query) {
+        header.textContent = 'Popular Missions';
+        renderMissions(ALL_MISSIONS);
+        return;
+      }
+
+      const lq = query.toLowerCase();
+      const matches = ALL_MISSIONS.filter(m =>
+        m.title.toLowerCase().includes(lq) ||
+        m.desc.toLowerCase().includes(lq) ||
+        m.type.toLowerCase().includes(lq)
+      );
+
+      header.textContent = `Results for "${query}" — ${matches.length} found`;
+      renderMissions(matches.length > 0 ? matches : ALL_MISSIONS);
+    }
+
+    document.getElementById('search-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+    document.getElementById('search-input').addEventListener('input', function() {
+      if (this.value === '') doSearch();
+    });
+
+    // Initial render
+    renderMissions(ALL_MISSIONS);
+  </script>
+</body>
+</html>

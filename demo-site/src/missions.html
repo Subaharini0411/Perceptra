@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISRO Demo - Missions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav id="main-nav">
+    <a class="nav-brand" href="index.html">🚀 <span>ISRO</span> Demo</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="missions.html" class="active">Missions</a></li>
+      <li><a href="chandrayaan.html">Chandrayaan</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="shopping.html">Shopping</a></li>
+      <li><a href="news.html">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div style="padding: 2rem 0;">
+      <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.5rem;">ISRO Missions</h1>
+      <p style="color:var(--text-secondary); margin-bottom:2rem;">Comprehensive list of ISRO space missions</p>
+
+      <!-- Mission Cards Grid -->
+      <div class="section">
+        <h2 class="section-title">🛸 Active & Recent Missions</h2>
+        <div class="grid-3">
+          <div class="card mission-card" id="chandrayaan-mission" data-testid="chandrayaan-mission">
+            <div class="mission-icon">🌙</div>
+            <h3>Chandrayaan-3</h3>
+            <p>India's historic lunar south pole landing mission with Vikram lander and Pragyan rover.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-success">SUCCESS</span>
+              <span class="badge badge-info">Lunar</span>
+              <span class="badge badge-info">2023</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <a href="chandrayaan.html" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">View Details</a>
+            </div>
+          </div>
+
+          <div class="card mission-card" id="mars-mission" data-testid="mars-mission">
+            <div class="mission-icon">🔴</div>
+            <h3>Mars Orbiter Mission</h3>
+            <p>Mangalyaan — India's first interplanetary mission. Entered Martian orbit in 2014 on first attempt.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-success">SUCCESS</span>
+              <span class="badge badge-info">Planetary</span>
+              <span class="badge badge-info">2013</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <button class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;" onclick="showMissionDetail('mars')">View Details</button>
+            </div>
+          </div>
+
+          <div class="card mission-card" id="aditya-mission" data-testid="aditya-mission">
+            <div class="mission-icon">☀️</div>
+            <h3>Aditya-L1</h3>
+            <p>First dedicated solar observation spacecraft at L1 Lagrange point studying solar corona and winds.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-success">ACTIVE</span>
+              <span class="badge badge-info">Solar</span>
+              <span class="badge badge-info">2023</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <button class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;" onclick="showMissionDetail('aditya')">View Details</button>
+            </div>
+          </div>
+
+          <div class="card mission-card" id="gsat-mission" data-testid="gsat-mission">
+            <div class="mission-icon">📡</div>
+            <h3>GSAT-20</h3>
+            <p>High throughput communication satellite providing Ka-band broadband services across India.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-success">ACTIVE</span>
+              <span class="badge badge-info">Communication</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <button class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.8rem;">View Details</button>
+            </div>
+          </div>
+
+          <div class="card mission-card" id="navic-mission" data-testid="navic-mission">
+            <div class="mission-icon">🗺️</div>
+            <h3>NavIC</h3>
+            <p>Navigation with Indian Constellation — India's regional navigation satellite system for South Asia.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-success">ACTIVE</span>
+              <span class="badge badge-info">Navigation</span>
+              <span class="badge badge-info">2016</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <button class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.8rem;">View Details</button>
+            </div>
+          </div>
+
+          <div class="card mission-card" id="gaganyaan-mission" data-testid="gaganyaan-mission">
+            <div class="mission-icon">👨‍🚀</div>
+            <h3>Gaganyaan</h3>
+            <p>India's first human spaceflight mission. Crewed spacecraft carrying Indian astronauts to LEO.</p>
+            <div style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge badge-warning">UPCOMING</span>
+              <span class="badge badge-info">Human</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <button class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.8rem;">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Missions Table -->
+      <div class="section">
+        <h2 class="section-title">📋 Mission Summary Table</h2>
+        <div class="card" style="padding:0; overflow:hidden;">
+          <table>
+            <thead>
+              <tr>
+                <th>Mission Name</th>
+                <th>Year</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Cost (Est.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Chandrayaan-3</strong></td>
+                <td>2023</td>
+                <td><span class="badge badge-success">SUCCESS</span></td>
+                <td>Lunar</td>
+                <td>₹615 Crore</td>
+              </tr>
+              <tr>
+                <td><strong>Aditya-L1</strong></td>
+                <td>2023</td>
+                <td><span class="badge badge-success">ACTIVE</span></td>
+                <td>Solar</td>
+                <td>₹378 Crore</td>
+              </tr>
+              <tr>
+                <td><strong>Mars Orbiter Mission</strong></td>
+                <td>2013</td>
+                <td><span class="badge badge-success">SUCCESS</span></td>
+                <td>Planetary</td>
+                <td>₹454 Crore</td>
+              </tr>
+              <tr>
+                <td><strong>Chandrayaan-2</strong></td>
+                <td>2019</td>
+                <td><span class="badge badge-warning">PARTIAL</span></td>
+                <td>Lunar</td>
+                <td>₹978 Crore</td>
+              </tr>
+              <tr>
+                <td><strong>NavIC</strong></td>
+                <td>2016</td>
+                <td><span class="badge badge-success">ACTIVE</span></td>
+                <td>Navigation</td>
+                <td>₹1,420 Crore</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission Detail Modal -->
+  <div class="modal-overlay" id="mission-modal">
+    <div class="modal" id="mission-modal-content">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+
+  <footer>
+    <p>PERCEPTA Demo Site — ISRO-themed content for testing purposes only.</p>
+  </footer>
+
+  <script>
+    const MISSION_DETAILS = {
+      mars: {
+        icon: '🔴',
+        title: 'Mars Orbiter Mission (Mangalyaan)',
+        summary: 'India\'s first interplanetary mission. The spacecraft entered Martian orbit on September 24, 2014, making India the first Asian country and first in the world to reach Mars on its first attempt.',
+        stats: [
+          { label: 'Launch Date', value: 'November 5, 2013' },
+          { label: 'Mars Orbit Insertion', value: 'September 24, 2014' },
+          { label: 'Launch Vehicle', value: 'PSLV-C25' },
+          { label: 'Mission Cost', value: '₹454 Crore (~$75M)' },
+          { label: 'Payload', value: '5 scientific instruments' },
+          { label: 'Status', value: 'Mission Success (Lost contact 2022)' },
+        ],
+      },
+      aditya: {
+        icon: '☀️',
+        title: 'Aditya-L1 Solar Mission',
+        summary: 'India\'s first space-based observatory to study the Sun. Positioned at the L1 Lagrange point, it provides uninterrupted observation of the Sun without eclipse.',
+        stats: [
+          { label: 'Launch Date', value: 'September 2, 2023' },
+          { label: 'L1 Arrival', value: 'January 6, 2024' },
+          { label: 'Launch Vehicle', value: 'PSLV-C57' },
+          { label: 'Mission Cost', value: '₹378 Crore' },
+          { label: 'Payload', value: '7 scientific instruments' },
+          { label: 'Status', value: 'Active — fully operational' },
+        ],
+      },
+    };
+
+    function showMissionDetail(id) {
+      const mission = MISSION_DETAILS[id];
+      if (!mission) return;
+      const modal = document.getElementById('mission-modal-content');
+      modal.innerHTML = `
+        <div style="font-size:2.5rem; text-align:center; margin-bottom:1rem;">${mission.icon}</div>
+        <h2 style="text-align:center;">${mission.title}</h2>
+        <p style="color:var(--text-secondary); margin:1rem 0; line-height:1.8;">${mission.summary}</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin:1.5rem 0;">
+          ${mission.stats.map(s => `
+            <div style="background:var(--bg-secondary); border-radius:0.5rem; padding:0.75rem;">
+              <div style="font-size:0.75rem; color:var(--text-muted);">${s.label}</div>
+              <div style="font-weight:600; margin-top:0.25rem;">${s.value}</div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="btn btn-secondary" onclick="document.getElementById('mission-modal').classList.remove('active')" style="width:100%;">Close</button>
+      `;
+      document.getElementById('mission-modal').classList.add('active');
+    }
+
+    document.getElementById('mission-modal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
