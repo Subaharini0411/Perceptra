@@ -1,0 +1,24 @@
+{
+  "name": "percepta-backend",
+  "version": "1.0.0",
+  "description": "PERCEPTA Backend & Agent Orchestrator - SIH26171 ISRO",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "playwright": "^1.45.0"
+  },
+  "keywords": [
+    "browser-agent",
+    "isro",
+    "visual-perception",
+    "on-device-ai",
+    "playwright"
+  ],
+  "author": "PERCEPTA AI Team",
+  "license": "ISC"
+}

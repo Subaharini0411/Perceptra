@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISRO Mission News & Announcements - PERCEPTA Testbed</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .news-item {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .spacer-block {
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed #334155;
+      border-radius: 10px;
+      margin: 32px 0;
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-section">
+      <div class="logo-badge">ISRO</div>
+      <div class="logo-title">INDIAN SPACE RESEARCH ORGANISATION</div>
+    </div>
+    <nav class="nav-links">
+      <a href="./index.html" class="nav-item" id="nav-missions">Missions</a>
+      <a href="./search.html" class="nav-item" id="nav-search">Search Portal</a>
+      <a href="./forms.html" class="nav-item" id="nav-forms">Payload Proposal</a>
+      <a href="./news.html" class="nav-item active" id="nav-news">News & Launches</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">ISRO Media & Launch Bulletins</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">
+      Official press updates from Satish Dhawan Space Centre (SDSC-SHAR) and ISRO Telemetry, Tracking and Command Network (ISTRAC).
+    </p>
+
+    <div class="news-item">
+      <span class="card-badge badge-active">Launch Success</span>
+      <h3 style="font-size: 18px; margin: 8px 0;">PSLV-C58 Successfully Deploys XPoSat into 650km Orbit</h3>
+      <p style="color: #94a3b8; font-size: 14px; line-height: 1.5;">
+        ISRO's workhorse launch vehicle Polar Satellite Launch Vehicle (PSLV) has accomplished its 60th flight with pinpoint orbital accuracy.
+      </p>
+    </div>
+
+    <!-- Long scroll section to test scrolling agents -->
+    <div class="spacer-block">
+      ↓ Telemetry stream feed & scientific archive data (Scroll down for technical publications) ↓
+    </div>
+
+    <div class="news-item" id="bottom-article">
+      <span class="card-badge badge-planned">Deep Space Tech</span>
+      <h3 style="font-size: 18px; margin: 8px 0;">Next-Gen Launch Vehicle (NGLV) Architecture Finalized</h3>
+      <p style="color: #94a3b8; font-size: 14px; line-height: 1.5; margin-bottom: 16px;">
+        The Next Generation Launch Vehicle "Soorya" is being designed for 3-stage heavy lift capability with semicryogenic propulsion and reusable first stage booster.
+      </p>
+      <button 
+        id="btn-learn-more" 
+        class="search-btn" 
+        style="width: auto;" 
+        onclick="alert('Learn More clicked: NGLV technical specifications loaded successfully!')"
+      >
+        Learn More
+      </button>
+    </div>
+  </div>
+</body>
+</html>

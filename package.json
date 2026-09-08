@@ -1,0 +1,21 @@
+{
+  "name": "percepta",
+  "version": "1.0.0",
+  "description": "PERCEPTA - On-device Visual Perception for Light-weight Browser Agents (ISRO SIH26171)",
+  "scripts": {
+    "install:all": "cd backend && npm install && npx playwright install chromium && cd ../frontend && npm install",
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "node start-dev.js"
+  },
+  "keywords": [
+    "browser-agent",
+    "isro",
+    "sih2026",
+    "visual-perception",
+    "on-device-ai",
+    "playwright"
+  ],
+  "author": "PERCEPTA Team",
+  "license": "Apache-2.0"
+}

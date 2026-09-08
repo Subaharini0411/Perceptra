@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISRO Mission Control Portal - Restricted Access</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .login-container {
+      max-width: 440px;
+      margin: 40px auto;
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--accent-amber);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .login-alert {
+      display: none;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-section">
+      <div class="logo-badge">ISRO</div>
+      <div class="logo-title">INDIAN SPACE RESEARCH ORGANISATION</div>
+    </div>
+    <nav class="nav-links">
+      <a href="./index.html" class="nav-item" id="nav-missions">Missions</a>
+      <a href="./search.html" class="nav-item" id="nav-search">Search Portal</a>
+      <a href="./forms.html" class="nav-item" id="nav-forms">Payload Proposal</a>
+      <a href="./shopping.html" class="nav-item" id="nav-shopping">Equipment Store</a>
+      <a href="./login.html" class="nav-item active" id="nav-login">Scientist Login</a>
+      <a href="./news.html" class="nav-item" id="nav-news">News</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="login-container">
+      <div class="security-badge">
+        🔒 RESTRICTED DEFENSE & SPACE NETWORK
+      </div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Scientist & Operator Gateway</h2>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+        Authenticate to access satellite tracking telemetry, orbital telemetry downlinks, and payload controls.
+      </p>
+
+      <div id="login-alert" class="login-alert alert-success">
+        ✓ Clearance Verified. Session Token Granted: #ISTRAC-SEC-4491
+      </div>
+
+      <form id="scientist-login-form" onsubmit="handleLogin(event)">
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">
+            ISRO Scientist Identity / Badge ID *
+          </label>
+          <input 
+            type="text" 
+            id="badge-id" 
+            class="search-input" 
+            style="width: 100%;" 
+            placeholder="ISRO-SC-88192" 
+            value="ISRO-SC-88192"
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 13px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">
+            Security Keyphrase / PIN *
+          </label>
+          <input 
+            type="password" 
+            id="security-pin" 
+            class="search-input" 
+            style="width: 100%;" 
+            placeholder="••••••••••••" 
+            value="orbit-chandrayaan-secure"
+            required
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          id="btn-login-submit" 
+          class="search-btn" 
+          style="width: 100%; margin-bottom: 12px;"
+        >
+          Authenticate & Access Telemetry
+        </button>
+
+        <p style="text-align: center; font-size: 11px; color: #64748b;">
+          All authentication attempts are logged locally with zero cloud telemetry exfiltration.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById('login-alert');
+      alertBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

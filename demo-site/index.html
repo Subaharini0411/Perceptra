@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISRO Mission Portal - PERCEPTA Testbed</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body id="demo-body">
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="logo-section">
+      <div class="logo-badge">ISRO</div>
+      <div class="logo-title">INDIAN SPACE RESEARCH ORGANISATION</div>
+    </div>
+    <nav class="nav-links">
+      <a href="./index.html" class="nav-item active" id="nav-missions">Missions</a>
+      <a href="./search.html" class="nav-item" id="nav-search">Search Portal</a>
+      <a href="./forms.html" class="nav-item" id="nav-forms">Payload Proposal</a>
+      <a href="./news.html" class="nav-item" id="nav-news">News & Launches</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Hero / Search Section -->
+    <section class="hero">
+      <div class="hero-tag">ISRO Planetary Explorations & Satellite Network</div>
+      <h1 class="hero-title">Space Exploration & Mission Operations</h1>
+      <p class="hero-subtitle">
+        Local Autonomous Browser Agent Testbed. Ground stations, satellite telemetry, and planetary exploration fleet.
+      </p>
+
+      <div class="search-container" id="hero-search-box">
+        <input 
+          type="text" 
+          id="mission-search-input" 
+          class="search-input" 
+          placeholder="Search for ISRO missions (e.g. Chandrayaan, Gaganyaan)..."
+          aria-label="Search ISRO Missions"
+        />
+        <button id="mission-search-button" class="search-btn" onclick="handleSearch()">Search</button>
+      </div>
+    </section>
+
+    <!-- Missions Fleet Grid -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2 class="section-title">🚀 Active & Historical Space Missions</h2>
+      <button 
+        id="toggle-mutation-btn" 
+        style="background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;"
+        onclick="toggleLayoutMutation()"
+      >
+        Simulate Layout Shift (Test Perception)
+      </button>
+    </div>
+
+    <div class="cards-grid" id="missions-grid">
+      <!-- Chandrayaan-3 Card -->
+      <div class="mission-card" id="card-chandrayaan" data-mission="chandrayaan">
+        <span class="card-badge badge-active">Active Operation</span>
+        <h3 class="card-title">Chandrayaan-3 Mission</h3>
+        <p class="card-desc">
+          Lunar exploration mission demonstrating successful soft landing on the Moon's South Pole with Vikram Lander and Pragyan Rover conducting surface in-situ experiments.
+        </p>
+        <div class="card-meta">
+          <span>Target: Lunar South Pole</span>
+          <span>Status: Mission Accomplished</span>
+        </div>
+        <button class="card-btn" id="btn-open-chandrayaan" onclick="openModal('Chandrayaan-3', 'Chandrayaan-3 successfully accomplished soft landing near lunar south pole on August 23, 2023. Pragyan Rover traversed over 100 meters, confirming elemental presence of Sulphur, Aluminium, Calcium, and Iron.')">
+          View Mission Details
+        </button>
+      </div>
+
+      <!-- Aditya-L1 Card -->
+      <div class="mission-card" id="card-aditya" data-mission="aditya">
+        <span class="card-badge badge-active">Halo Orbit</span>
+        <h3 class="card-title">Aditya-L1 Solar Observatory</h3>
+        <p class="card-desc">
+          India's first space-based observatory class solar mission positioned at Sun-Earth Lagrange point L1 to continuously monitor solar corona and coronal mass ejections.
+        </p>
+        <div class="card-meta">
+          <span>Orbit: Sun-Earth L1</span>
+          <span>Payloads: 7 Scientific Payloads</span>
+        </div>
+        <button class="card-btn" id="btn-open-aditya" onclick="openModal('Aditya-L1', 'Aditya-L1 was inserted into halo orbit around L1 on January 6, 2024. Payloads VELC, SUIT, and ASPEX have captured high-resolution solar magnetic field and ultraviolet dynamics.')">
+          View Mission Details
+        </button>
+      </div>
+
+      <!-- Gaganyaan Card -->
+      <div class="mission-card" id="card-gaganyaan" data-mission="gaganyaan">
+        <span class="card-badge badge-planned">Crewed Spaceflight</span>
+        <h3 class="card-title">Gaganyaan Human Flight</h3>
+        <p class="card-desc">
+          Indian human spaceflight programme demonstrating human spaceflight capability to Low Earth Orbit (LEO) with safe return of astronauts to Indian territorial waters.
+        </p>
+        <div class="card-meta">
+          <span>Target: 400 km LEO</span>
+          <span>Crew: Indian Astronauts</span>
+        </div>
+        <button class="card-btn" id="btn-open-gaganyaan" onclick="openModal('Gaganyaan', 'Gaganyaan will launch 3 crew members to 400 km orbit for a 3-day mission. Test Vehicle Flight TV-D1 has successfully validated the Crew Escape System.')">
+          View Mission Details
+        </button>
+      </div>
+
+      <!-- Mars Orbiter Mission (Mangalyaan) Card -->
+      <div class="mission-card" id="card-mars" data-mission="mangalyaan">
+        <span class="card-badge badge-historic">Interplanetary</span>
+        <h3 class="card-title">Mars Orbiter Mission (Mangalyaan)</h3>
+        <p class="card-desc">
+          Historic interplanetary mission placing India as the first Asian nation to reach Martian orbit and the first in the world to do so in its maiden attempt.
+        </p>
+        <div class="card-meta">
+          <span>Target: Mars Orbit</span>
+          <span>Launch: PSLV-C25</span>
+        </div>
+        <button class="card-btn" id="btn-open-mars" onclick="openModal('Mars Orbiter Mission', 'MOM entered Mars orbit on September 24, 2014, operating flawlessly for nearly 8 years, mapping Martian surface features and atmospheric methane profiles.')">
+          View Mission Details
+        </button>
+      </div>
+
+      <!-- XPoSat Card -->
+      <div class="mission-card" id="card-xposat" data-mission="xposat">
+        <span class="card-badge badge-active">X-Ray Polarimetry</span>
+        <h3 class="card-title">XPoSat Observatory</h3>
+        <p class="card-desc">
+          Dedicated satellite to study polarisation of cosmic X-rays from astronomical sources like black hole X-ray binaries, pulsar wind nebulae, and supernova remnants.
+        </p>
+        <div class="card-meta">
+          <span>Orbit: 650 km LEO</span>
+          <span>Payload: POLIX & XSPECT</span>
+        </div>
+        <button class="card-btn" id="btn-open-xposat" onclick="openModal('XPoSat', 'Launched on January 1, 2024, XPoSat is only the second dedicated astronomical X-ray polarimetry mission globally.')">
+          View Mission Details
+        </button>
+      </div>
+
+      <!-- NISAR Card -->
+      <div class="mission-card" id="card-nisar" data-mission="nisar">
+        <span class="card-badge badge-planned">Earth Observation</span>
+        <h3 class="card-title">NISAR Dual-Band Radar</h3>
+        <p class="card-desc">
+          Joint NASA-ISRO Synthetic Aperture Radar observatory utilizing L-band and S-band radar to measure Earth's changing ecosystems, glaciers, and crustal deformation.
+        </p>
+        <div class="card-meta">
+          <span>Orbit: 747 km Sun-Synchronous</span>
+          <span>Radar: Dual Freq L & S Band</span>
+        </div>
+        <button class="card-btn" id="btn-open-nisar" onclick="openModal('NISAR Mission', 'NISAR provides unprecedented global coverage of Earth surface dynamics every 12 days for climate and disaster mitigation.')">
+          View Mission Details
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="mission-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-text">Mission Details</h3>
+        <button class="close-btn" id="btn-close-modal" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-content" id="modal-body-text">
+        Loading details...
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="card-btn" style="width: auto;" onclick="closeModal()">Close Details</button>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align: center; padding: 24px; color: #64748b; font-size: 12px; border-top: 1px solid #1e293b;">
+    PERCEPTA Autonomous Agent Evaluation Environment — ISRO SIH26171 Prototype
+  </footer>
+
+  <script>
+    function handleSearch() {
+      const q = document.getElementById('mission-search-input').value.trim().toLowerCase();
+      if (!q) return;
+      window.location.href = './search.html?q=' + encodeURIComponent(q);
+    }
+
+    // Allow Enter key in search box
+    document.getElementById('mission-search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') handleSearch();
+    });
+
+    function openModal(title, content) {
+      document.getElementById('modal-title-text').innerText = title;
+      document.getElementById('modal-body-text').innerText = content;
+      document.getElementById('mission-modal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('mission-modal').classList.remove('open');
+    }
+
+    function toggleLayoutMutation() {
+      document.getElementById('demo-body').classList.toggle('mutation-active');
+    }
+  </script>
+</body>
+</html>

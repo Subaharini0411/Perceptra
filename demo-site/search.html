@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISRO Mission Search - PERCEPTA Testbed</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-section">
+      <div class="logo-badge">ISRO</div>
+      <div class="logo-title">INDIAN SPACE RESEARCH ORGANISATION</div>
+    </div>
+    <nav class="nav-links">
+      <a href="./index.html" class="nav-item" id="nav-missions">Missions</a>
+      <a href="./search.html" class="nav-item active" id="nav-search">Search Portal</a>
+      <a href="./forms.html" class="nav-item" id="nav-forms">Payload Proposal</a>
+      <a href="./news.html" class="nav-item" id="nav-news">News & Launches</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">ISRO Mission Search & Telemetry Database</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">
+      Direct querying of satellite tracking, planetary rovers, and scientific payloads.
+    </p>
+
+    <!-- Search Box -->
+    <div style="display: flex; gap: 12px; margin-bottom: 30px; background: #111827; padding: 16px; border-radius: 10px; border: 1px solid #1e293b;">
+      <input 
+        type="text" 
+        id="query-input" 
+        class="search-input" 
+        placeholder="Type search terms (e.g. Chandrayaan, Rover, Mars, Radar, Satellite)..."
+        aria-label="Mission Query"
+      />
+      <button id="btn-search-exec" class="search-btn" onclick="executeSearch()">Search Database</button>
+      <button id="btn-clear-search" class="card-btn" style="width: auto;" onclick="clearSearch()">Clear</button>
+    </div>
+
+    <!-- Status & Results Count -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <div id="results-count" style="font-size: 14px; color: var(--accent-cyan); font-weight: 600;">
+        Showing all missions (6 results)
+      </div>
+      <div style="font-size: 13px; color: #64748b;">
+        Index Status: Online
+      </div>
+    </div>
+
+    <!-- Results Grid -->
+    <div class="cards-grid" id="search-results-grid">
+      <!-- Items dynamically populated or default listed -->
+    </div>
+  </div>
+
+  <script>
+    const database = [
+      {
+        id: "res-chandrayaan",
+        title: "Chandrayaan-3 Lunar Exploration",
+        tag: "Lunar",
+        desc: "ISRO third lunar mission consisting of lander module Vikram and rover Pragyan. Accomplished historic polar landing.",
+        category: "Planetary",
+        target: "Moon"
+      },
+      {
+        id: "res-aditya",
+        title: "Aditya-L1 Solar Coronagraphy",
+        tag: "Solar",
+        desc: "Observation of the solar photosphere, chromosphere, and corona with magnetometers and energetic particle spectrometers.",
+        category: "Astrophysics",
+        target: "Sun-Earth L1"
+      },
+      {
+        id: "res-gaganyaan",
+        title: "Gaganyaan Orbital Module",
+        tag: "Human Flight",
+        desc: "Crew module and service module designed for 3 astronauts with integrated avionics and life support systems.",
+        category: "Human Spaceflight",
+        target: "Low Earth Orbit"
+      },
+      {
+        id: "res-mangalyaan",
+        title: "Mars Orbiter Mission (Mangalyaan)",
+        tag: "Mars",
+        desc: "Autonomous Martian exploration spacecraft with Mars Color Camera and Thermal Infrared Imaging Spectrometer.",
+        category: "Planetary",
+        target: "Mars"
+      },
+      {
+        id: "res-xposat",
+        title: "XPoSat Cosmic Polarimeter",
+        tag: "X-Ray",
+        desc: "Space observatory for measurement of polarization in medium X-ray band from bright astronomical sources.",
+        category: "Astrophysics",
+        target: "Earth Orbit"
+      },
+      {
+        id: "res-satellite-comm",
+        title: "Satellite Communication Fleet (GSAT & CMS Series)",
+        tag: "Telecom",
+        desc: "Geostationary and medium-orbit communication satellites providing pan-India broadband and emergency transponders.",
+        category: "Telecommunications",
+        target: "Geostationary"
+      }
+    ];
+
+    function renderResults(items) {
+      const grid = document.getElementById('search-results-grid');
+      const countEl = document.getElementById('results-count');
+      grid.innerHTML = '';
+      countEl.innerText = `Showing ${items.length} result(s)`;
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b;">No missions matched your search criteria.</div>`;
+        return;
+      }
+
+      items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'mission-card';
+        card.id = item.id;
+        card.innerHTML = `
+          <span class="card-badge badge-active">${item.tag}</span>
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-desc">${item.desc}</p>
+          <div class="card-meta">
+            <span>Class: ${item.category}</span>
+            <span>Target: ${item.target}</span>
+          </div>
+          <button class="card-btn" id="btn-result-${index + 1}" onclick="alert('Navigating to ' + '${item.title}')">
+            Open Details & Telemetry
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function executeSearch() {
+      const query = document.getElementById('query-input').value.trim().toLowerCase();
+      if (!query) {
+        renderResults(database);
+        return;
+      }
+      const filtered = database.filter(m => 
+        m.title.toLowerCase().includes(query) || 
+        m.desc.toLowerCase().includes(query) ||
+        m.tag.toLowerCase().includes(query) ||
+        m.target.toLowerCase().includes(query)
+      );
+      renderResults(filtered);
+    }
+
+    function clearSearch() {
+      document.getElementById('query-input').value = '';
+      renderResults(database);
+    }
+
+    // Parse URL param ?q=
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        document.getElementById('query-input').value = q;
+        executeSearch();
+      } else {
+        renderResults(database);
+      }
+    });
+
+    document.getElementById('query-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') executeSearch();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# render.yaml — PERCEPTA Render.com Deployment
+# Smart India Hackathon 2026 | SIH26171 | ISRO
+# Deploy at: https://dashboard.render.com
+
+services:
+  - type: web
+    name: percepta
+    runtime: node
+    region: singapore  # closest to India; change to: ohio / oregon / frankfurt
+    plan: free          # free tier works; upgrade to starter for always-on
+
+    buildCommand: |
+      cd frontend && npm install && npm run build && cd ..
+      cd backend && npm install
+      cd backend && npx playwright install chromium --with-deps
+
+    startCommand: node backend/server.js
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000        # Render assigns port 10000 by default
+
+    # Health check endpoint
+    healthCheckPath: /api/system/health
+
+    # Auto-deploy on git push
+    autoDeploy: true
