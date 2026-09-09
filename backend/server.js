@@ -51,17 +51,30 @@ if (fs.existsSync(frontendDist)) {
   console.log('📦 Production frontend served from frontend/dist');
 }
 
-// Root Status
-app.get('/', (req, res) => {
+// Root Status / Health Endpoint
+app.get('/api/status', (req, res) => {
   res.json({
     name: 'PERCEPTA',
     tagline: 'See the Web. Understand Locally. Act Safely.',
     sihProblemStatement: 'SIH26171',
     agency: 'Indian Space Research Organisation (ISRO)',
     status: 'ONLINE',
-    demoUrl: `http://localhost:${PORT}/demo/index.html`
+    demoUrl: `/demo/index.html`
   });
 });
+
+if (!fs.existsSync(frontendDist)) {
+  app.get('/', (req, res) => {
+    res.json({
+      name: 'PERCEPTA',
+      tagline: 'See the Web. Understand Locally. Act Safely.',
+      sihProblemStatement: 'SIH26171',
+      agency: 'Indian Space Research Organisation (ISRO)',
+      status: 'ONLINE',
+      notice: 'Frontend build not detected. Run `cd frontend && npm run build`'
+    });
+  });
+}
 
 // Start Server
 const server = app.listen(PORT, async () => {
