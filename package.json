@@ -10,6 +10,8 @@
     "dev:demo": "cd demo-site && npm run dev",
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../demo-site && npm install",
     "install:playwright": "cd backend && npx playwright install chromium",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "node backend/server.js",
     "test": "npm run test:backend && npm run test:suite",
     "test:backend": "cd backend && npm test",
     "test:suite": "npx jest tests/PerceptaSuite.test.js"
